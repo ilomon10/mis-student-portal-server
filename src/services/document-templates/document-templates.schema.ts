@@ -14,7 +14,8 @@ export const documentTemplatesSchema = Type.Object(
     title: Type.String(),
     file_name: Type.String(),
     file_url: Type.String(),
-    file_type: Type.String()
+    file_type: Type.String(),
+    category: Type.String()
   },
   { $id: 'DocumentTemplates', additionalProperties: false }
 )

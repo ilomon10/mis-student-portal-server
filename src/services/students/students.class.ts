@@ -20,7 +20,10 @@ export class StudentService<ServiceParams extends Params = StudentParams> extend
 
 export const getOptions = (app: Application): KnexAdapterOptions => {
   return {
-    paginate: app.get('paginate'),
+    paginate: {
+      ...app.get('paginate'),
+      max: 2000
+    },
     Model: app.get('mysqlClient'),
     name: 'students'
   }

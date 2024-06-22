@@ -217,7 +217,23 @@ export const studentQueryProperties = Type.Pick(studentSchema, [
 
 export const studentQuerySchema = Type.Intersect(
   [
-    querySyntax(studentQueryProperties),
+    querySyntax(studentQueryProperties, {
+      first_name: {
+        $like: Type.String()
+      },
+      middle_name: {
+        $like: Type.String()
+      },
+      last_name: {
+        $like: Type.String()
+      },
+      id: {
+        $like: Type.String()
+      },
+      school_year: {
+        $like: Type.String()
+      }
+    }),
     // Add additional query properties here
     Type.Object({}, { additionalProperties: true })
   ],

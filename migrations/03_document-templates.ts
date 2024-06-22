@@ -10,6 +10,8 @@ export async function up(knex: Knex): Promise<void> {
     table.string('file_name')
     table.string('file_url')
     table.string('file_type')
+
+    table.string('category')
   })
 }
 
