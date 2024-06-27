@@ -71,8 +71,8 @@ export const studentSchema = Type.Object(
       G11: 'G11',
       G12: 'G12'
     }),
-    program: Type.String(),
-    other_program: Type.String(),
+    program: typeboxNullable([Type.String()]),
+    other_program: typeboxNullable([Type.String()]),
 
     transportation: Type.Union([Type.Null(), Type.String()]),
     transportation_policy: typeboxNullable([Type.String()]),

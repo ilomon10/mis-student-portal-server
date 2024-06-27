@@ -20,6 +20,7 @@ import { studentPath, studentMethods } from './students.shared'
 import { convertDate } from '../../hooks/convert-date'
 import { convertBoolean } from '../../hooks/convert-boolean'
 import { createOrUpdate } from '../../hooks/create-or-update'
+import { searchQueryParser } from '../../hooks/search-query-parser'
 
 export * from './students.class'
 export * from './students.schema'
@@ -44,6 +45,7 @@ export const student = (app: Application) => {
     },
     before: {
       all: [
+        searchQueryParser('q', 'qf'),
         convertBoolean([
           'test_approval',
           'document_approval',
