@@ -35,12 +35,13 @@ export const userExternalResolver = resolve<User, HookContext<UserService>>({
 })
 
 // Schema for creating new entries
-export const userDataSchema = Type.Pick(userSchema, ['email', 'password'], {
+export const userDataSchema = Type.Pick(userSchema, ['email', 'role', 'password'], {
   $id: 'UserData'
 })
 export type UserData = Static<typeof userDataSchema>
 export const userDataValidator = getValidator(userDataSchema, dataValidator)
 export const userDataResolver = resolve<User, HookContext<UserService>>({
+  role: (v) => v || USER_ROLE.PUBLIC,
   password: passwordHash({ strategy: 'local' })
 })
 
@@ -69,8 +70,10 @@ export const userQueryValidator = getValidator(userQuerySchema, queryValidator)
 export const userQueryResolver = resolve<UserQuery, HookContext<UserService>>({
   // If there is a user (e.g. with authentication), they are only allowed to see their own data
   id: async (value, user, context) => {
-    if (context.params.user) {
-      return context.params.user.id
+    if (context.params.user?.role !== USER_ROLE.ADMINISTRATOR) {
+      if (context.params.user) {
+        return context.params.user.id
+      }
     }
 
     return value
