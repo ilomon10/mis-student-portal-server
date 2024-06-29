@@ -6,7 +6,6 @@ export const searchQueryParser = (queryKey: string, queryFields: string) => asyn
   let fields = context.params.query[queryFields]
   let query = context.params.query[queryKey]
   if (fields && query) {
-    console.log(context.params.query[queryKey], queryKey, queryFields)
     delete context.params.query[queryKey]
     delete context.params.query[queryFields]
     query = normalizeText(query)
