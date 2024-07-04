@@ -117,6 +117,7 @@ export const studentSchema = Type.Object(
     }),
 
     profile_image_url: typeboxNullable([Type.String()]),
+    note: typeboxNullable([Type.String()]),
 
     created_at: typeboxNullable([Type.String()]),
     updated_at: typeboxNullable([Type.String()]),

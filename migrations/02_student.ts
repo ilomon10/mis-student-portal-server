@@ -79,6 +79,8 @@ export async function up(knex: Knex): Promise<void> {
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
 
+    table.text('note')
+
     knexHelper.table_timestamp(knex, table)
   })
 }
